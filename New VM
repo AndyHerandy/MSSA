@@ -1,0 +1,19 @@
+$RG = 'Read-Host -Prompt "Enter Resource Group To Place VM"'
+$Loc = 'Read-Host -Prompt "Enter Azure Region to Place VM"'
+$VMName = 'Read-Host -Prompt "Enter VM Name"'
+$VirtNet = 'Read-Host -Prompt "Enter Virtual Netowrk Name"'
+$SNet = 'Read-Host -Prompt "Enter Subnet to Place VM"'
+$SecGroup = 'Read-Host -Prompt "Enter Security Group to Place VM"'
+$OpPorts = 'Read-Host -Prompt "Ports to Open , Seperated"'
+
+
+New-AzResourceGroup -Name $RG -Location $Loc
+New-AzVm `
+    -ResourceGroupName $RG `
+    -Name $VMName `
+    -Location $Loc `
+    -VirtualNetworkName $VirtNet `
+    -SubnetName 'mySubnet' `
+    -SecurityGroupName 'myNetworkSecurityGroup' `
+    -PublicIpAddressName 'myPublicIpAddress' `
+    -OpenPorts $OpPorts
