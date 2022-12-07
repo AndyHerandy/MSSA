@@ -17,3 +17,5 @@ New-AzVm `
     -SecurityGroupName 'myNetworkSecurityGroup' `
     -PublicIpAddressName 'myPublicIpAddress' `
     -OpenPorts $OpPorts
+New-AzVM -ResourceGroupName "MyTestResourceGroup" -Name "WS22VM" -ImageName "MicrosoftWindowsServer:WindowsServer:2022-Datacenter:latest"  -Location "EastUS" -Size Standard_B1s
+    

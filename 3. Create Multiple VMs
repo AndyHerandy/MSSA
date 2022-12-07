@@ -1,0 +1,17 @@
+#This script will create multiple virtual machines in Azure using PowerShell.
+
+#Login to Azure using an Account
+$subscriptionId = '<subscription_id>'
+$tenantId = '<tenant_id>'
+Login-AzureRmAccount -SubscriptionId $subscriptionId -TenantId $tenantId
+
+#Create a Resource Group
+$resourceGroupName = 'myResourceGroup'
+New-AzureRmResourceGroup -Name $resourceGroupName -Location 'eastus'
+
+#Create 3 VMs
+$vmNames = 'vm1', 'vm2', 'vm3'
+
+foreach ($vmName in $vmNames)
+{
+New-AzureRmVM -ResourceGroupName $resourceGroupName -Name $vmName -Location 'eastus' -VirtualNetworkName 'myVnet' -SubnetName 'mySubnet' -SecurityGroupName 'myNetworkSecurityGroup'

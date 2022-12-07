@@ -1,0 +1,20 @@
+#Define Variables 
+$VMSize = "Standard_B1s"
+$VMName = "MyTestVM"
+$Location = "West US"
+$ResourceGroupName = "MyTestResourceGroup"
+#Ensure unique name
+$StorageAccountName = "myteststorageaccount1733" 
+
+#Create Resource Group
+New-AzResourceGroup -Name $ResourceGroupName -Location $Location
+
+#Create Storage Account
+New-AzStorageAccount -ResourceGroupName $ResourceGroupName -Name $StorageAccountName -Location $Location -SkuName Standard_LRS
+
+#Create VMs
+for($i=1; $i -le 5; $i++)
+{
+  $VMName = $VMName + $i
+  $VM = New-AzVm -ResourceGroupName $ResourceGroupName -Name $VMName -Location $Location -VirtualNetworkName myVnet -SubnetName mySubnet -SecurityGroupName myNetworkSecurityGroup -PublicIpAddressName myPublicIP -Size $VMSize
+}
