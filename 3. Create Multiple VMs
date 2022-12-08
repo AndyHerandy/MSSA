@@ -14,4 +14,14 @@ $vmNames = 'vm1', 'vm2', 'vm3'
 
 foreach ($vmName in $vmNames)
 {
-New-AzureRmVM -ResourceGroupName $resourceGroupName -Name $vmName -Location 'eastus' -VirtualNetworkName 'myVnet' -SubnetName 'mySubnet' -SecurityGroupName 'myNetworkSecurityGroup'
+New-AzureRmVM `
+    -ResourceGroupName $resourceGroupName `
+    -Name $vmName `
+    -Location 'westus' `
+    -VirtualNetworkName 'myVnet' '
+    -SubnetName 'mySubnet' '
+    -SecurityGroupName 'myNetworkSecurityGroup' `
+    -ImageName "MicrosoftWindowsServer:WindowsServer:2022-Datacenter:latest" `
+    -Size "Standard_B1s"
+
+}
